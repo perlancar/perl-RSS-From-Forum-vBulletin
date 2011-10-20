@@ -88,8 +88,6 @@ sub get_rss_from_forum {
     # find all table rows containing show thread url
     my $rows = $dom->find("tr");
     for my $row (@$rows) {
-        #my $a = $row->find(qq{a[href*="showthread.php"});
-        print "D:row\n";
         my $a = $row->find(qq{a[href*="showthread.php"]});
         next unless @$a;
         push @rss, "<item>\n";
