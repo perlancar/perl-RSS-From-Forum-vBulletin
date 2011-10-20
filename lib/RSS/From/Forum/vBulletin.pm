@@ -4,8 +4,11 @@ use 5.010;
 use strict;
 use warnings;
 
+use Date::Parse;
+use Log::Any qw($log);
 use LWP::UserAgent;
 use Mojo::DOM;
+use POSIX;
 use URI::URL;
 
 use Exporter::Lite;
@@ -54,6 +57,7 @@ _
 sub get_rss_from_forum {
     my %args = @_;
 
+    my $datefmt = "%a, %d %b %Y %H:%M:%S %z";
     state $default_ua = LWP::UserAgent->new;
 
     my $url = $args{url} or return [400, "Please specify url"];
@@ -74,17 +78,26 @@ sub get_rss_from_forum {
 
     my @rss;
 
-    push @rss, "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    push @rss, '<?xml version="1.0" encoding="UTF-8">',"\n";
     push @rss, "<!-- generator=$gen -->\n";
-    push @rss, "<rss version=\"2.0\">\n";
+    push @rss, ('<rss version="2.0"',
+                ' xmlns:content="http://purl.org/rss/1.0/modules/content/"',
+                ' xmlns:wfw="http://wellformedweb.org/CommentAPI/"',
+                ' xmlns:dc="http://purl.org/dc/elements/1.1/"',
+                ' xmlns:atom="http://www.w3.org/2005/Atom"',
+                ' xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"',
+                ' xmlns:slash="http://purl.org/rss/1.0/modules/slash/"',
+                ">\n");
     push @rss, "<channel>\n";
 
     my $els = $dom->find("title");
     push @rss, "<title>",
         ($els->[0] ? $els->[0]->text : "(untitled)"), "</title>\n";
-    push @rss, "<link>$url</link><!-- HTML, not RSS -->\n";
+    push @rss, "<link>$url</link>\n";
     push @rss, "<generator>$gen</generator>\n";
-
+    push @rss, "<lastBuildDate>",
+        POSIX::strftime($datefmt, gmtime),
+              "</lastBuildDate>\n";
     # find all table rows containing show thread url
     my $rows = $dom->find("tr");
     for my $row (@$rows) {
@@ -95,7 +108,27 @@ sub get_rss_from_forum {
         my $iurl = URI::URL->new($a->[0]->attrs->{href})->abs($url);
         $iurl = _strip_session_param("$iurl");
         push @rss, "<link>$iurl</link>\n";
-        # TODO: pubDate
+        my $row_s = "$row";
+
+        {
+            $row_s =~ m! \s ([0-9/-]+) \s
+                         <span\sclass="time">
+                         (\d+:\d+(?:\s[AP]M)?)</span>!x;
+            if (!$1) {
+                $log->warn("No date found in entry $iurl");
+                last;
+            }
+
+            my $date_s = "$1 $2";
+            my $date   = str2time $date_s;
+            if (!$date) {
+                $log->warn("Can't parse date `$date_s` in entry $iurl");
+                last;
+            }
+            push @rss, "<pubDate>", strftime($datefmt, gmtime($date)),
+                "</pubDate>\n";
+        }
+
         # TODO: description
         push @rss, "</item>\n\n";
     }
