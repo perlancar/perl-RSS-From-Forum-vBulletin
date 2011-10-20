@@ -1,5 +1,10 @@
 Revision history for RSS-From-Forum-vBulletin.
 
+0.02    2011-10-20
+
+        No functional changes. Remove debugging statement.
+
+
 0.01    2011-10-20
 
         First basic, working release.
