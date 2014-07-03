@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!perl
 
 # workaround for dzil
 package get_rss_from_forum;
