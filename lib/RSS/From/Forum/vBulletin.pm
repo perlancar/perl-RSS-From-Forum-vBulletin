@@ -26,6 +26,7 @@ sub _strip_session_param {
 }
 
 $SPEC{get_rss_from_forum} = {
+    v => 1.1,
     summary => 'Generate an RSS page by parsing vBulletin forum display page',
     description => <<'_',
 
@@ -35,23 +36,26 @@ RSS.
 
 _
     args    => {
-        url => ['str*' => {
+        url => {
             summary     => 'Forum URL (the forum display page)',
+            schema      => 'str*',
             description => <<'_',
 
 Usually it's of the form: http://host/path/forumdisplay.php?f=XXX
 
 _
-            arg_pos     => 0,
-        }],
-        ua => ['obj' => {
+            pos         => 0,
+            req         => 1,
+        },
+        ua => {
             summary     => 'Supply a custom LWP::UserAgent object',
+            schema      => 'obj*',
             description => <<'_',
 
 If supplied, will be used instead of the default LWP::UserAgent object.
 
 _
-        }],
+        },
     },
 };
 sub get_rss_from_forum {

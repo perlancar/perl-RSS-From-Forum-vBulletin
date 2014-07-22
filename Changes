@@ -1,5 +1,13 @@
 Revision history for RSS-From-Forum-vBulletin
 
+0.06     2014-07-22 (SHARYANTO)
+
+         - No functional changes.
+
+         - Switch CLI scripts from using Perinci::CmdLine to
+           Perinci::CmdLine::Any to reduce size of dependencies.
+
+
 0.05    2012-03-23 (SHARYANTO)
 
         - No functional changes. Replace Sub::Spec::CmdLine with

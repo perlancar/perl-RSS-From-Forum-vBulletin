@@ -9,8 +9,8 @@ use 5.010;
 use strict;
 use warnings;
 
-use Perinci::CmdLine;
-Perinci::CmdLine->new(
+use Perinci::CmdLine::Any;
+Perinci::CmdLine::Any->new(
     url => '/RSS/From/Forum/vBulletin/get_rss_from_forum')->run;
 
 1;
