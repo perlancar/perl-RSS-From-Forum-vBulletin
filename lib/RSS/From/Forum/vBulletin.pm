@@ -144,8 +144,7 @@ sub get_rss_from_forum {
 }
 
 1;
-#ABSTRACT: Get RSS page by parsing vBulletin forum display page
-__END__
+#ABSTRACT:
 
 =head1 SYNOPSIS
 
