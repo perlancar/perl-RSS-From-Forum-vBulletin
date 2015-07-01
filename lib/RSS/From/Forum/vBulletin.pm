@@ -153,9 +153,4 @@ sub get_rss_from_forum {
 
 =head1 DESCRIPTION
 
-
-=head1 FUNCTIONS
-
-None are exported, but they are exportable.
-
 =cut
