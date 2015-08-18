@@ -1,11 +1,14 @@
 package RSS::From::Forum::vBulletin;
 
+# DATE
+# VERSION
+
 use 5.010001;
 use strict;
 use warnings;
+use Log::Any::IfLOG qw($log);
 
 use Date::Parse;
-use Log::Any qw($log);
 use LWP::UserAgent;
 use Mojo::DOM;
 use POSIX;
@@ -13,8 +16,6 @@ use URI::URL;
 
 use Exporter::Lite;
 our @EXPORT_OK = qw(get_rss_from_forum);
-
-# VERSION
 
 our %SPEC;
 
