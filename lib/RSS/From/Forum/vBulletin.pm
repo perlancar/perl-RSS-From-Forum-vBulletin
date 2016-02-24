@@ -14,7 +14,7 @@ use Mojo::DOM;
 use POSIX;
 use URI::URL;
 
-use Exporter::Lite;
+use Exporter qw(import);
 our @EXPORT_OK = qw(get_rss_from_forum);
 
 our %SPEC;
