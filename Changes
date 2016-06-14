@@ -1,5 +1,12 @@
 Revision history for RSS-From-Forum-vBulletin
 
+0.10    2016-06-14 (PERLANCAR)
+
+	- No functional changes.
+
+	- [dist] Replace Exporter::Lite with Exporter.
+
+
 0.09    2015-09-04 (PERLANCAR)
 
 	- No functional changes.
