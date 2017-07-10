@@ -6,7 +6,7 @@ package RSS::From::Forum::vBulletin;
 use 5.010001;
 use strict;
 use warnings;
-use Log::Any::IfLOG qw($log);
+use Log::ger;
 
 use Date::Parse;
 use LWP::UserAgent;
@@ -120,14 +120,14 @@ sub get_rss_from_forum {
                          <span\sclass="time">
                          (\d+:\d+(?:\s[AP]M)?)</span>!x;
             if (!$1) {
-                $log->warn("No date found in entry $iurl");
+                log_warn("No date found in entry $iurl");
                 last;
             }
 
             my $date_s = "$1 $2";
             my $date   = str2time $date_s;
             if (!$date) {
-                $log->warn("Can't parse date `$date_s` in entry $iurl");
+                log_warn("Can't parse date `$date_s` in entry $iurl");
                 last;
             }
             push @rss, "<pubDate>", strftime($datefmt, gmtime($date)),
