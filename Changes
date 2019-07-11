@@ -1,18 +1,18 @@
-0.11    2017-07-10 (PERLANCAR)
+0.11    2017-07-10  Released-By: PERLANCAR
 
 	- No functional changes.
 
 	- Replace Log::Any with Log::ger.
 
 
-0.10    2016-06-14 (PERLANCAR)
+0.10    2016-06-14  Released-By: PERLANCAR
 
 	- No functional changes.
 
 	- [dist] Replace Exporter::Lite with Exporter.
 
 
-0.09    2015-09-04 (PERLANCAR)
+0.09    2015-09-04  Released-By: PERLANCAR
 
 	- No functional changes.
 
@@ -21,7 +21,7 @@
 	  requirement.
 
 
-0.08    2015-08-18 (PERLANCAR)
+0.08    2015-08-18  Released-By: PERLANCAR
 
 	- No functional changes.
 
@@ -35,7 +35,7 @@
            generated script is not as polished as it should be. Stay tuned.
 
 
-0.06     2014-07-22 (SHARYANTO)
+0.06     2014-07-22  Released-By: SHARYANTO
 
          - No functional changes.
 
@@ -43,27 +43,27 @@
            Perinci::CmdLine::Any to reduce size of dependencies.
 
 
-0.05    2012-03-23 (SHARYANTO)
+0.05    2012-03-23  Released-By: SHARYANTO
 
         - No functional changes. Replace Sub::Spec::CmdLine with
           Perinci::CmdLine.
 
 
-0.04    2011-10-25 (SHARYANTO)
+0.04    2011-10-25  Released-By: SHARYANTO
 
         - No functional changes. Add missing dep [ct].
 
 
-0.03    2011-10-20 (SHARYANTO)
+0.03    2011-10-20  Released-By: SHARYANTO
 
         - Parse date.
 
 
-0.02    2011-10-20 (SHARYANTO)
+0.02    2011-10-20  Released-By: SHARYANTO
 
         - No functional changes. Remove debugging statement.
 
 
-0.01    2011-10-20 (SHARYANTO)
+0.01    2011-10-20  Released-By: SHARYANTO
 
         - First basic, working release.
